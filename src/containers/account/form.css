@@ -1,0 +1,66 @@
+.form-container {
+    background: linear-gradient(#fffdfd, #fffdfd) padding-box,
+        linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
+    border: 2px solid transparent;
+    padding: 32px 24px;
+    font-size: 14px;
+    font-family: inherit;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    background-size: 200% 100%;
+    animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.form-container .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-container .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.form-container .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #1d1d1d;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.input {
+    color: #8707ff !important;
+    border: 2px solid #8707ff !important;
+    border-radius: 10px !important;
+    padding: 10px 25px !important;
+    background: transparent !important;
+}
+
+.input:active {
+    box-shadow: 2px 2px 15px #8707ff inset !important;
+}
+
+@media (max-width:500px) {
+
+}
