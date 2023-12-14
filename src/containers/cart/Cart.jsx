@@ -1,7 +1,8 @@
+import PageConstruction from "../../components/error/PageConstruction";
 
 
 export default function Cart() {
   return (
-    <div>Cart</div>
+    <div><PageConstruction/></div>
   )
 }

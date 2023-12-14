@@ -65,7 +65,7 @@ export default function SingUp() {
       </section>
       <section className="hidden md:block relative ">
         <div className="absolute bottom-16 -z-[1] w-[400px] h-[400px] rounded-full gradient-background"></div>
-        <img width={450} src="/women-happy-laptop.png" alt="" className="z-10" />
+        <img src="/women-happy-laptop.png" alt="" className="z-10" />
       </section>
     </div>
   );

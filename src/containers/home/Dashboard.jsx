@@ -1,17 +1,23 @@
-import { useState } from "react";
-import ProductList from "../../components/product/ProductList";
+import { useState, useEffect } from "react";
 import NavBar from "../../components/navigation/NavBar";
 import NavBarDown from "../../components/navigation/NavBarDown";
 import Oferts from "../../components/product/Oferts";
 import Categories from "../../components/navigation/Categories";
+import Products from "./Products";
 
 function App() {
-  const [toggleDark, setToggleDark] = useState(false);
+  // Lee el estado del localStorage al cargar el componente
+  const storedDarkMode = localStorage.getItem("darkMode");
+  const [toggleDark, setToggleDark] = useState(storedDarkMode === "true");
+
+  // Guarda el estado en el localStorage cada vez que cambia
+  useEffect(() => {
+    localStorage.setItem("darkMode", toggleDark.toString());
+  }, [toggleDark]);
 
   const toggleClick = () => {
     setToggleDark(!toggleDark);
   };
-
   return (
     <div
       className={
@@ -32,11 +38,12 @@ function App() {
       <section className="md:mt-20 mt-28 lg:px-20 p-8 py-10 mb-16 md:mb-0">
         <Categories />
         <Oferts />
-        <ProductList />
+        
       </section>
       <section className="fixed bottom-0 z-20 w-full md:hidden">
         <NavBarDown toggleClick={toggleClick} toggleDark={toggleDark} />
       </section>
+      <div className="hidden"><Products  toggleClick={toggleClick} toggleDark={toggleDark}/></div>
     </div>
   );
 }

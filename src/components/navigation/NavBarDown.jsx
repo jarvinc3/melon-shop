@@ -1,37 +1,30 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navBarDown.css";
 
 export default function NavBarDown({ toggleDark }) {
-  const [navBar, setNavBar] = useState(false);
-
-  const handleClick = () => {
-    setNavBar(!navBar);
-  };
-
   return (
-    <nav
-      className="relative bg-white border-gray-200 dark:bg-gray-900 shadow-md rounded-xl mx-3 max-w-screen-xl flex flex-wrap p-4 justify-between md:order-2 md:gap-4 items-center"
-    >
+    <nav className="relative bg-white border-gray-200 dark:bg-gray-900 shadow-md rounded-xl mx-3 max-w-screen-xl flex flex-wrap p-4 justify-between md:order-2 md:gap-4 items-center">
       <Link className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
         <img src="/home-icon.png" alt="" />
       </Link>
-      <button className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-        {toggleDark ? (
-          <img
-            width="30"
-            src="https://img.icons8.com/fluency-systems-regular/48/000000/guest-male.png"
-            alt="guest-male"
-          />
-        ) : (
-          <img width="35" src="/light.png" alt="guest-male" />
-        )}
-      </button>
+      <Link to={"/login"}>
+        <button className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+          {toggleDark ? (
+            <img width="35" src="/light.png" alt="guest-male" />
+          ) : (
+            <img
+              width="30"
+              src="https://img.icons8.com/fluency-systems-regular/48/000000/guest-male.png"
+              alt="guest-male"
+            />
+          )}
+        </button>
+      </Link>
       <button className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
         <img src="/cart.png" alt="" />
       </button>
-      
+
       <div>
         <button
           className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"

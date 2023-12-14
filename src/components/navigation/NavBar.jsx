@@ -33,7 +33,7 @@ export default function NavBar({ toggleClick, toggleDark }) {
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md rounded-xl md:mx-8 mx-3 transition-all duration-300 hover:transition-all hover:duration-300 after:transition-all after:duration-500 after:hover:transition-all after:hover:duration-500 overflow-hidden after:-translate-y-full after:hover:translate-y-0 [&_p]:delay-200 [&_p]:transition-all flex justify-between items-center py-3 md:px-2">
-      <section className="w-full h-auto flex md:justify-start justify-evenly items-center md:gap-8">
+      <section className="w-full h-auto flex md:justify-start justify-between items-center md:gap-8">
         <div className="md:block hidden md:ml-4">
           <button
             className=" inline-flex items-center p-2 w-10 md:h-14 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -276,7 +276,7 @@ export default function NavBar({ toggleClick, toggleDark }) {
         </div>
         <button
           onClick={toggleClick}
-          className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+          className="md:hidden mr-4 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
         >
           {toggleDark ? (
             <svg
@@ -355,9 +355,11 @@ export default function NavBar({ toggleClick, toggleDark }) {
             </svg>
           )}
         </button>
-        <button className=" text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-          <img src="/cart.png" alt="" />
-        </button>
+        <Link to={'/cart'}>
+          <button className=" text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+            <img src="/cart.png" alt="" />
+          </button>
+        </Link>
       </section>
     </nav>
   );

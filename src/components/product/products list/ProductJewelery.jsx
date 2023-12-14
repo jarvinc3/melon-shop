@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Loader from "../../loader/Loader";
 
 const ProductJewelery = () => {
   const [products, setProducts] = useState([]);
@@ -33,7 +34,7 @@ const ProductJewelery = () => {
   return (
     <section className="">
       {isLoading ? (
-        <div>cargando....</div>
+        <Loader/>
       ) : (
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 bg-transparent">
           {products.map((product) => (

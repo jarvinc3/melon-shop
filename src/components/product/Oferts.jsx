@@ -144,7 +144,7 @@ export default function Oferts() {
         </div>
       </div>
       {/* Slider indicators */}
-      <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+      <div className="absolute z-20 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
         <button
           type="button"
           className="w-3 h-3 rounded-full"
