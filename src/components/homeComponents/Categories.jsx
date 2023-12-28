@@ -36,7 +36,7 @@ export default function Categories() {
           </li>
         </Link>
       </ul>
-      <div className="bg-white dark:bg-gray-900 dark:text-gray-100 hidden md:block">
+      <div className="bg-white rounded-xl dark:bg-gray-900 dark:text-gray-100 hidden md:block">
         <div className="container mx-auto p-4 my-3 lg:px-8 lg:py-14 xl:max-w-7xl">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
             <Link to={'/all products'}>
@@ -45,7 +45,8 @@ export default function Categories() {
                 className="group relative block overflow-hidden transition ease-out active:opacity-75"
               >
                 <img
-                  src="https://cdn.tailkit.com/media/placeholders/photo-1SAnrIxw5OY-700x700.jpg"
+                  src="/all-products.png"
+                  width={500}
                   alt="Product Image"
                   className="transform transition ease-out group-hover:scale-110"
                 />
@@ -99,7 +100,7 @@ export default function Categories() {
                 className="group relative block overflow-hidden transition ease-out active:opacity-75 sm:col-span-2 md:col-span-1"
               >
                 <img
-                  src="https://cdn.tailkit.com/media/placeholders/photo-ALpEkP29Eys-700x700.jpg"
+                  src="/jewelery.webp"
                   alt="Product Image"
                   className="transform transition ease-out group-hover:scale-110"
                 />

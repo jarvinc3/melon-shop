@@ -11,13 +11,13 @@ export default function NavBarDown({ toggleDark }) {
       <Link to={"/login"}>
         <button className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
           {toggleDark ? (
-            <img width="35" src="/light.png" alt="guest-male" />
-          ) : (
             <img
               width="30"
               src="https://img.icons8.com/fluency-systems-regular/48/000000/guest-male.png"
               alt="guest-male"
             />
+          ) : (
+            <img width="35" src="/light.png" alt="guest-male" />
           )}
         </button>
       </Link>

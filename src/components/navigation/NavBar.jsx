@@ -32,7 +32,7 @@ export default function NavBar({ toggleClick, toggleDark }) {
   }, [isDrawerVisible]);
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md rounded-xl md:mx-8 mx-3 transition-all duration-300 hover:transition-all hover:duration-300 after:transition-all after:duration-500 after:hover:transition-all after:hover:duration-500 overflow-hidden after:-translate-y-full after:hover:translate-y-0 [&_p]:delay-200 [&_p]:transition-all flex justify-between items-center py-3 md:px-2">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md rounded-xl md:mx-8 mx-3 transition-all duration-300 hover:transition-all hover:duration-300 after:transition-all after:duration-500 after:hover:transition-all after:hover:duration-500 overflow-hidden after:-translate-y-full after:hover:translate-y-0 [&_p]:delay-200 [&_p]:transition-all flex justify-between items-center py-3 md:px-2 mb-1">
       <section className="w-full h-auto flex md:justify-start justify-between items-center md:gap-8">
         <div className="md:block hidden md:ml-4">
           <button
@@ -245,8 +245,8 @@ export default function NavBar({ toggleClick, toggleDark }) {
           </div>
         </div>
         <div className="md:flex hidden items-center">
-          <img width={70} src="/melon-shop-logo.png" alt="" />
-          <img width={170} src="/melon-shop-name.png" alt="" />
+          <img width={50} src="/melon-shop-logo.png" alt="" />
+          <img width={150} src="/melon-shop-name.png" alt="" />
         </div>
         <div className="relative w-[85%] md:w-[40%] px-3">
           <div className="absolute inset-y-0 start-0 flex items-center ps-6 pointer-events-none">
