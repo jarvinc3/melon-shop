@@ -1,21 +1,12 @@
-// tailwind.config.js
-import flowbitePlugin from "flowbite/plugin";
-
 /** @type {import('tailwindcss').Config} */
-const config = {
+export default {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "node_modules/flowbite-react/lib/esm/**/*.js",
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
-    extend: {
-      transitionProperty: {
-        height: "height",
-        spacing: "margin, padding",
-      },
-    },
+    extend: {},
   },
-  plugins: [flowbitePlugin],
-};
-
-export default config;
+  plugins: [],
+}
