@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import { MainLayout } from "../components/layout/MainLayout";
 import { Login } from "../pages/auth/LogIn";
-import { SingUp } from "../pages/auth/Singup";
+import { SingUp } from "../pages/auth/SingUp";
 import { Dashboard } from "../pages/dashboard";
 import { ErrorPage } from "../pages/error/ErrorPage";
 
