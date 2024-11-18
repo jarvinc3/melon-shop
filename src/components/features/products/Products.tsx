@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const Products = () => {
   const [isActive, setIsActive] = useState(false)
   const [products, setProducts] = useState([]);
-  const [imageData, setImageData] = useState(null);
+  const [imageData, setImageData] = useState<string>("");
 
   const toggleActive = () => {
     setIsActive(true)
@@ -11,7 +11,7 @@ export const Products = () => {
 
   const getImages = () => {
     fetch("https://picsum.photos/200/300").then((response) => {
-      // setImageData(response.url);
+      setImageData(response.url);
     });
   };
 

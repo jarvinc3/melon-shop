@@ -1,9 +1,9 @@
 import { useRoutes } from "react-router-dom";
-import { ErrorPage } from "../pages/error/ErrorPage";
-import { SingUp } from "../pages/auth/singup";
-import { Login } from "../pages/auth/singin";
-import { Dashboard } from "../pages/dashboard";
 import { MainLayout } from "../components/layout/MainLayout";
+import { Login } from "../pages/auth/LogIn";
+import { SingUp } from "../pages/auth/Singup";
+import { Dashboard } from "../pages/dashboard";
+import { ErrorPage } from "../pages/error/ErrorPage";
 
 function Router() {
   const routes = [

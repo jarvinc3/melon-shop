@@ -3,7 +3,7 @@ import "/src/components/css/form.css";
 
 export const Login = () => {
    return (
-      <div className="items-end justify-center w-screen h-screen login lg:flex ">
+      <div className="items-end justify-center w-screen h-screen login lg:flex">
          <section className=" h-full lg:w-[40%] flex flex-col justify-center items-center">
             <div className="flex items-center justify-center w-full mb-12 md:mb-5 lg:mb-2">
                <img width={70} src="/logos/melon-shop-logo.png" alt="" />
