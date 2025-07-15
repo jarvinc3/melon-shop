@@ -1,28 +1,15 @@
-import Footer from "../common/footer/Footer";
-import { NavBar } from "../common/nav/NavBar";
-import { NavBarDown } from "../common/nav/NavBarDown";
+import { Outlet } from 'react-router-dom';
+import { Footer } from './Footer';
+import { Header } from './Header';
 
-interface Props {
-   children?: React.ReactNode
-   className?: string
-}
-
-export const MainLayout = ({ children, className }: Props) => {
-
+export default function MainLayout () {
    return (
-      <div className="bg-slate-100 dark:bg-slate-800">
-         <section>
-            <NavBar />
-         </section>
-         <div className={className}>
-            {children}
-         </div>
-         <section>
-            <NavBarDown />
-         </section>
-         <section>
-            <Footer />
-         </section>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-stone-100 dark:from-slate-900 dark:to-slate-800">
+         <Header />
+         <main>
+            <Outlet />
+         </main>
+         <Footer />
       </div>
-   )
-}
+   );
+}; 

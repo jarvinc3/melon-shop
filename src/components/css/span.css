@@ -1,7 +1,0 @@
-@media (min-width:768px) {
-    .span {
-        display: grid;
-        justify-content: space-between;
-        grid-template-columns: 30% 25% 40%;
-    }
-}
