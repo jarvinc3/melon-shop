@@ -7,7 +7,7 @@ import {
   type CarouselApi
 } from "@/components/ui/carousel"
 import { cn } from "@/lib/utils"
-import type { Banner } from "@/pages/HomePage"
+import type { Banner } from "@/types/ui.types"
 import Autoplay from "embla-carousel-autoplay"
 import { ArrowRight, Play, SquareArrowOutUpRight } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
@@ -45,14 +45,6 @@ export function BannerSlider({ banners, className }: { banners: Banner[], classN
                 <img src={banner.image || "/placeholder.svg"} alt={banner.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/20"></div>
               </div>
-
-              {/* <div className="sm:hidden absolute inset-0 size-full flex items-center justify-center">
-                <img
-                  src={banner.image}
-                  alt={banner.title}
-                  className="size-1/2 object-cover rounded-3xl shadow-2xl"
-                />
-              </div> */}
 
               <div className="container mx-auto relative z-10 h-full px-4 grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
                 <div className="lg:space-y-6 text-center lg:text-left flex flex-col justify-evenly h-full sm:h-auto sm:block">

@@ -31,6 +31,7 @@ export const NavLayout = ({ children, title, action, bottomAction }: NavLayoutPr
       window.addEventListener("scroll", handleScroll);
       return () => window.removeEventListener("scroll", handleScroll);
    }, [lastScrollY]);
+
    return (
       <div className="text-primary">
          <div className={cn("fixed -top-1 left-0 right-0 z-50 h-14 px-4 text-primary flex justify-between items-center transition-transform duration-300 bg-primary shadow-md py-8", showMobileBars ? "translate-y-1" : "-translate-y-full")}>

@@ -1,25 +1,28 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { useOrderSummary } from "@/hooks";
 import { motion } from "framer-motion";
 import { CheckCircle, Home, ShoppingBag, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
+interface OrderItem {
+   name: string
+   quantity: number
+   price: number
+}
+
 export default function SuccessPage() {
    const navigate = useNavigate()
+   const { data: orderDetails, isLoading } = useOrderSummary()
 
-   const orderDetails = {
-      orderNumber: "#ORD-2024-001",
-      total: 44.39,
-      items: [
-         { name: "Wireless Headphones", quantity: 1, price: 29.99 },
-         { name: "Phone Case", quantity: 2, price: 7.20 }
-      ],
-      estimatedDelivery: "January 20, 2024",
-      shippingAddress: "123 Main St, New York, NY 10001",
-      paymentMethod: "•••• •••• •••• 4242"
-   };
+   if (isLoading || !orderDetails) {
+      return (
+         <main className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
+            <div className="text-center">Loading order details...</div>
+         </main>
+      )
+   }
 
-   // Animation variants
    const containerVariants = {
       hidden: { opacity: 0 },
       visible: {
@@ -261,7 +264,7 @@ export default function SuccessPage() {
                      <AccordionContent className="flex flex-col gap-4 text-balance">
                         <div className="space-y-3">
                            <h4 className="font-semibold text-secondary">Items Ordered:</h4>
-                           {orderDetails.items.map((item, index) => (
+                           {orderDetails.items.map((item: OrderItem, index: number) => (
                               <div key={index} className="flex justify-between items-center py-2 border-b border-border last:border-b-0">
                                  <div>
                                     <span className="font-medium">{item.name}</span>

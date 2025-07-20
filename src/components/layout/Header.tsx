@@ -1,10 +1,11 @@
 import { CartDrawer } from "@/components/features/cart/CartDrawer"
+import { SearchPopover } from "@/components/features/search/SearchPopover"
+import { SearchPopoverMobile } from "@/components/features/search/SearchPopoverMobile"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { useCart } from "@/hooks/use-cart"
 import { ThemeToggle } from "@/lib/theme-toggle"
 import { cn } from "@/lib/utils"
-import { ContactRound, Home, NotepadText, Search, ShoppingBag, Store } from "lucide-react"
+import { ContactRound, Home, NotepadText, ShoppingBag, Store } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { NavUser } from "./NavUser"
@@ -69,14 +70,7 @@ export function Header() {
         )}>
         <ThemeToggle />
 
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Search..."
-            className="pl-10 pr-2 py-2 max-w-48 bg-primary border-border rounded-full text-sm"
-          />
-        </div>
-
+        <SearchPopoverMobile />
 
         <NavUser user={{ name: "John Doe", email: "john.doe@example.com", avatar: "/placeholder.svg" }} />
 
@@ -116,13 +110,7 @@ export function Header() {
 
         {/* Search Bar */}
         <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
-          <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
-            <Input
-              placeholder="Search products..."
-              className="pl-10 border-border rounded-full bg-transparent"
-            />
-          </div>
+          <SearchPopover />
         </div>
 
         {/* Actions */}

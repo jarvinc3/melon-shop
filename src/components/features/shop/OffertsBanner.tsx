@@ -6,7 +6,7 @@ import {
    type CarouselApi
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
-import type { Banner } from "@/pages/HomePage";
+import type { Banner } from "@/types/ui.types";
 import Autoplay from "embla-carousel-autoplay";
 import { useEffect, useRef, useState } from "react";
 

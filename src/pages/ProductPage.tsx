@@ -5,8 +5,10 @@ import { RelatedProducts } from "@/components/features/product/RelatedProducts"
 import { Footer } from "@/components/layout/Footer"
 import { NavLayout } from "@/components/layout/NavLayout"
 import { Button } from "@/components/ui/button"
+import { ProductWrapper } from "@/components/ui/data-wrapper"
+import { useProductById } from "@/hooks"
 import { useCart } from "@/hooks/use-cart"
-import type { CartItem } from "@/lib/cart-provider"
+import type { CartItem } from "@/lib"
 import { ShoppingBag, ShoppingCart } from "lucide-react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 
@@ -14,42 +16,27 @@ export interface ProductsProps {
    productId: string
 }
 
-const mockProduct = {
-   id: 1,
-   name: "Premium Wireless Headphones",
-   price: 299,
-   originalPrice: 399,
-   rating: 4.8,
-   reviews: 50,
-   description:
-      "Experience premium sound quality with our latest wireless headphones featuring active noise cancellation and 30-hour battery life.",
-   features: [
-      "Active Noise Cancellation",
-      "30-hour battery life",
-      "Premium sound quality",
-      "Comfortable fit",
-      "Quick charge technology",
-   ],
-   sizes: ["Small", "Medium", "Large"],
-   colors: ["Black", "White", "Silver", "Blue"],
-   image: "/placeholder.svg?height=300&width=300",
-}
-
 export default function ProductPage() {
    const { id } = useParams<{ id: string }>()
+   const productId = parseInt(id || "1")
+   const { data: product, isLoading, isError } = useProductById(productId)
    const { items, addItem } = useCart();
    const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
    const navigate = useNavigate()
 
    const handleAddToCart = () => {
+      if (!product) return;
+
       const cartItem: CartItem = {
-         id: id || "1",
-         size: "s",
-         color: "red",
-         name: mockProduct.name,
-         price: mockProduct.price,
-         image: "/placeholder.svg?height=300&width=300",
+         id: product.id.toString(),
+         productId: product.id,
+         size: product.sizes[0] || "One Size",
+         color: product.colors[0] || "Default",
+         name: product.name,
+         price: product.price,
+         image: product.image,
          quantity: 1,
+         sku: product.sku
       }
       addItem(cartItem)
    }
@@ -80,13 +67,19 @@ export default function ProductPage() {
          }
       >
          <main className="container mx-auto px-4 py-8 mt-14">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-               <ProductGallery productId={id || "1"} />
-               <ProductInfo productId={id || "1"} product={mockProduct} />
-            </div>
+            <ProductWrapper data={product} isLoading={isLoading} isError={isError}>
+               {product && (
+                  <>
+                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                        <ProductGallery productId={id || "1"} />
+                        <ProductInfo productId={id || "1"} product={product} />
+                     </div>
 
-            <RatingReviews />
-            <RelatedProducts productId={id || "1"} />
+                     <RatingReviews />
+                     <RelatedProducts productId={id || "1"} />
+                  </>
+               )}
+            </ProductWrapper>
          </main>
          <Footer />
       </NavLayout>

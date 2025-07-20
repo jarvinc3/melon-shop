@@ -1,51 +1,14 @@
 import { WishlistCard } from "@/components/features/wishlist/WishlistCard";
 import { NavLayout } from "@/components/layout/NavLayout";
 import { Button } from "@/components/ui/button";
+import { useWishlistStore } from "@/lib";
+import type { WishlistItem } from "@/types/wishlist.types";
 import { Heart, Home } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-export interface WishlistItem {
-   id: number;
-   name: string;
-   price: number;
-   image: string;
-   inStock: boolean;
-}
-const wishlistItems: WishlistItem[] = [
-   {
-      id: 1,
-      name: "Organic Fresh Melon",
-      price: 12.99,
-      image: "/placeholder.svg",
-      inStock: true
-   },
-   {
-      id: 2,
-      name: "Premium Watermelon",
-      price: 18.50,
-      image: "/placeholder.svg",
-      inStock: true
-   },
-   {
-      id: 3,
-      name: "Sweet Cantaloupe",
-      price: 9.99,
-      image: "/placeholder.svg",
-      inStock: false
-   },
-   {
-      id: 4,
-      name: "Honeydew Melon",
-      price: 14.75,
-      image: "/placeholder.svg",
-      inStock: true
-   }
-];
-
-
 export default function WishlistPage() {
    const navigate = useNavigate();
-
+   const { items: wishlistItems, itemCount } = useWishlistStore();
 
    return (
       <NavLayout title="Wishlist"
@@ -60,12 +23,12 @@ export default function WishlistPage() {
                {/* Header */}
                <div className="flex items-center justify-between">
                   <h1 className="text-2xl font-bold mb-2">My Wishlist</h1>
-                  <p className="text-muted-foreground">{wishlistItems.length} items</p>
+                  <p className="text-muted-foreground">{itemCount} items</p>
                </div>
 
                {/* Wishlist Items */}
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {wishlistItems.map((item) => (
+                  {wishlistItems.map((item: WishlistItem) => (
                      <WishlistCard key={item.id} item={item} />
                   ))}
                </div>

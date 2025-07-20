@@ -1,9 +1,10 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { useProductById } from "@/hooks"
 import { useCart } from "@/hooks/use-cart"
-import type { CartItem } from "@/lib/cart-provider"
-import type { WishlistItem } from "@/pages/WishlistPage"
+import type { WishlistItem } from "@/lib"
+import type { CartItem } from "@/types/cart.types"
 import { Heart, ShoppingCart, Trash2 } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
@@ -12,17 +13,22 @@ import { toast } from "sonner"
 export function WishlistCard({ item }: { item: WishlistItem }) {
   const [isWishlisted, setIsWishlisted] = useState<boolean>(false)
   const { addItem } = useCart()
+  const { data: product } = useProductById(item.productId)
 
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault()
+    if (!product) return;
+
     const cartItem: CartItem = {
       id: item.id.toString(),
-      size: "s",
-      color: "red",
+      productId: item.productId,
+      size: product.sizes[0] || "One Size",
+      color: product.colors[0] || "Default",
       name: item.name,
       price: item.price,
       image: item.image,
       quantity: 1,
+      sku: product.sku
     }
     addItem(cartItem)
     toast.success(

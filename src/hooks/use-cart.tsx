@@ -1,11 +1,16 @@
-import type { CartContextType } from "@/lib/cart-provider"
-import CartContext from "@/lib/cart-provider"
-import { useContext } from "react"
+import { useCartStore } from "@/lib/cart-store"
 
-export function useCart(): CartContextType {
-   const context = useContext(CartContext)
-   if (!context) {
-      throw new Error("useCart must be used within a CartProvider")
-   }
-   return context
+export function useCart() {
+  const cartStore = useCartStore()
+
+  return {
+    items: cartStore.items,
+    total: cartStore.total,
+    itemCount: cartStore.itemCount,
+    addItem: cartStore.addItem,
+    removeItem: cartStore.removeItem,
+    updateQuantity: cartStore.updateQuantity,
+    clearCart: cartStore.clearCart,
+    getSummary: cartStore.getSummary
+  }
 }

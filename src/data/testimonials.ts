@@ -1,4 +1,6 @@
-export const testimonials = [
+import type { Testimonial } from '@/types/ui.types'
+
+export const mockTestimonials: Testimonial[] = [
   {
     id: 1,
     name: "Sarah Johnson",
@@ -23,4 +25,20 @@ export const testimonials = [
     rating: 5,
     avatar: "/placeholder.svg?height=60&width=60",
   },
-]
+  {
+    id: 4,
+    name: "David Wilson",
+    role: "Entrepreneur",
+    content: "The product quality exceeded my expectations. Will definitely shop here again!",
+    rating: 5,
+    avatar: "/placeholder.svg?height=60&width=60",
+  },
+  {
+    id: 5,
+    name: "Lisa Rodriguez",
+    role: "Teacher",
+    content: "Great prices and excellent customer support. The delivery was super fast!",
+    rating: 5,
+    avatar: "/placeholder.svg?height=60&width=60",
+  },
+] 

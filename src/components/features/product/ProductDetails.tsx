@@ -1,5 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import type { Product } from "../shop/ProductCard"
+import type { Product } from "@/types/product.types"
 
 const specifications = [
    { label: "Brand", value: "ModernShop" },

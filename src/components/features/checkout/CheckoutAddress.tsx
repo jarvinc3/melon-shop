@@ -3,11 +3,17 @@ import { Check, Plus } from "lucide-react";
 import { useState } from "react";
 import { AddressForm } from "./AddressForm";
 
+interface Address {
+  id: string;
+  label: string;
+  address: string;
+  details: string;
+}
+
 export function CheckoutAddress() {
   const [addAddress, setAddAddress] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState("home");
-
-  const addresses = [
+  const [addresses, setAddresses] = useState<Address[]>([
     {
       id: "home",
       label: "Home",
@@ -20,7 +26,18 @@ export function CheckoutAddress() {
       address: "3891 Ranchview",
       details: "Dr. Richardson, California 62639"
     }
-  ];
+  ]);
+
+  const handleAddAddress = (newAddress: { label: string; address: string; details: string }) => {
+    const addressId = `address-${Date.now()}`;
+    const address: Address = {
+      id: addressId,
+      ...newAddress
+    };
+    setAddresses(prev => [...prev, address]);
+    setSelectedAddress(addressId);
+    setAddAddress(false);
+  };
 
   return (
     <div>
@@ -56,7 +73,7 @@ export function CheckoutAddress() {
           </Button>
         )}
         {addAddress && (
-          <AddressForm setAddAddress={setAddAddress} />
+          <AddressForm setAddAddress={setAddAddress} onAddAddress={handleAddAddress} />
         )}
       </div>
     </div>

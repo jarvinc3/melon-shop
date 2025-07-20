@@ -1,8 +1,8 @@
-import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay"
-import { Star } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
-import { testimonials } from "./testimonialsData"
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
+import { mockTestimonials } from "@/data/testimonials";
+import Autoplay from "embla-carousel-autoplay";
+import { Star } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export function TestimonialsCarousel() {
   const [api, setApi] = useState<CarouselApi>();
@@ -31,7 +31,7 @@ export function TestimonialsCarousel() {
           <section className="relative py-10 overflow-hidden rounded-2xl sm:px-10 shadow-lg bg-secondary min-h-72 md:h-60">
             <Carousel setApi={setApi} className="absolute inset-0 z-0 flex items-center" plugins={[plugin.current]}>
               <CarouselContent>
-                {testimonials.map((testimonial, index) => (
+                {mockTestimonials.map((testimonial, index) => (
                   <CarouselItem key={index} className="relative w-full sm:px-10 cursor-grab min-h-60 md:h-50">
                     <div className="text-center">
                       <div className="flex justify-center mb-6">
@@ -64,7 +64,7 @@ export function TestimonialsCarousel() {
             </Carousel>
           </section>
           <div className="flex space-x-3 z-20 justify-center">
-            {testimonials.map((_, index) => (
+            {mockTestimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => api?.scrollTo(index)}

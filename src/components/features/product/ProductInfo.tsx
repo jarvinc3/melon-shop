@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge"
+import type { Product } from "@/types/product.types"
 import { Star } from "lucide-react"
-import type { Product } from "../shop/ProductCard"
 import { ProductDetails } from "./ProductDetails"
 import { ProductQuantity } from "./ProductQuantity"
 

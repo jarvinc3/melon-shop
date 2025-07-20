@@ -1,23 +1,13 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { useProductById } from "@/hooks"
 import { useCart } from "@/hooks/use-cart"
-import type { CartItem } from "@/lib/cart-provider"
+import type { CartItem } from "@/types/cart.types"
+import type { Product } from "@/types/product.types"
 import { Heart, ShoppingCart, Star } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { toast } from "sonner"
-
-export interface Product {
-   id: number
-   name: string
-   price: number
-   originalPrice?: number
-   image: string
-   rating: number
-   reviews: number
-   badge?: string | null
-}
 
 interface ProductListProps {
    product: Product
@@ -26,32 +16,29 @@ interface ProductListProps {
 export function ProductList({ product }: ProductListProps) {
    const [isWishlisted, setIsWishlisted] = useState<boolean>(false)
    const { addItem } = useCart()
+   const { data: productDetails } = useProductById(product.id)
 
    const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>): void => {
       e.preventDefault()
+      if (!productDetails) return;
+
       const cartItem: CartItem = {
          id: product.id.toString(),
-         size: "s",
-         color: "red",
+         productId: product.id,
+         size: productDetails.sizes[0] || "One Size",
+         color: productDetails.colors[0] || "Default",
          name: product.name,
          price: product.price,
          image: product.image,
          quantity: 1,
+         sku: productDetails.sku
       }
       addItem(cartItem)
-      toast.success(
-         "Added to cart", {
-         description: `${product.name} has been added to your cart.`,
-      })
    }
 
    const handleWishlist = (e: React.MouseEvent<HTMLButtonElement>): void => {
       e.preventDefault()
       setIsWishlisted(!isWishlisted)
-      toast.success(
-         isWishlisted ? "Removed from wishlist" : "Added to wishlist", {
-         description: `${product.name} has been ${isWishlisted ? "removed from" : "added to"} your wishlist.`,
-      })
    }
 
    return (
