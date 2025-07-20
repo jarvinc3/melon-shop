@@ -1,132 +1,150 @@
 import { CartDrawer } from "@/components/features/cart/CartDrawer"
-import { ThemeToggle } from "@/components/lib/theme-toggle"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useCart } from "@/hooks/use-cart"
-import { Menu, Search, ShoppingBag, User, X } from "lucide-react"
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { ThemeToggle } from "@/lib/theme-toggle"
+import { cn } from "@/lib/utils"
+import { ContactRound, Home, NotepadText, Search, ShoppingBag, Store } from "lucide-react"
+import { useEffect, useState } from "react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import { NavUser } from "./NavUser"
+
+const navItems = [
+  {
+    name: "Home",
+    icon: Home,
+    path: "/"
+  },
+  {
+    name: "Shop",
+    icon: Store,
+    path: "/shop"
+  },
+  {
+    name: "Collect",
+    icon: NotepadText,
+    path: "/collections"
+  },
+  {
+    name: "About",
+    icon: ContactRound,
+    path: "/about"
+  }
+]
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
-  const [isCartOpen, setIsCartOpen] = useState<boolean>(false)
-  const { items } = useCart()
+  const [atTop, setAtTop] = useState(true);
+  const { items } = useCart();
+  const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  const { pathname } = useLocation();
+  const [showMobileBars, setShowMobileBars] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const navigate = useNavigate();
 
-  const itemCount = items.reduce((sum, item) => sum + item.quantity, 0)
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      setAtTop(currentScrollY === 0);
+
+      if (Math.abs(currentScrollY - lastScrollY) < 20) return;
+
+      const goingDown = currentScrollY > lastScrollY;
+      setShowMobileBars(!goingDown);
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/" className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-            ModernShop
-          </Link>
+    <header className="sticky top-0 z-50 bg-gradient-to-t from-transparent via-white/70 to-white dark:via-[#222222]/70 dark:to-[#222222]">
+      {/* Mobile Top Bar */}
+      <nav
+        className={cn(
+          "sm:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-primary h-14 px-4 shadow-md text-primary transition-transform duration-300",
+          showMobileBars ? "translate-y-0" : "-translate-y-full"
+        )}>
+        <ThemeToggle />
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link
-              to="/"
-              className="text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              to="/shop"
-              className="text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-            >
-              Shop
-            </Link>
-            <Link
-              to="/collections"
-              className="text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-            >
-              Collections
-            </Link>
-            <Link
-              to="/about"
-              className="text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-            >
-              About
-            </Link>
-          </nav>
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search..."
+            className="pl-10 pr-2 py-2 max-w-48 bg-primary border-border rounded-full text-sm"
+          />
+        </div>
 
-          {/* Search Bar */}
-          <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
-            <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
-              <Input
-                placeholder="Search products..."
-                className="pl-10 bg-slate-100 dark:bg-slate-800 border-none rounded-full"
-              />
-            </div>
-          </div>
 
-          {/* Actions */}
-          <div className="flex items-center space-x-4">
-            <ThemeToggle />
-            <Button variant="ghost" size="icon" className="hidden md:flex">
-              <User className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" onClick={() => setIsCartOpen(true)} className="relative">
-              <ShoppingBag className="h-5 w-5" />
-              {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {itemCount}
-                </span>
+        <NavUser user={{ name: "John Doe", email: "john.doe@example.com", avatar: "/placeholder.svg" }} />
+
+        <Button variant="ghost" size="icon" onClick={() => navigate("/cart")} className="relative">
+          <ShoppingBag className="size-6" />
+          {itemCount > 0 && (
+            <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              {itemCount}
+            </span>
+          )}
+        </Button>
+      </nav>
+
+      {/* Desktop Header */}
+      <nav className={`container items-center justify-between mx-auto px-4 hidden sm:flex h-16 rounded-2xl text-primary transition-all duration-300 ${atTop ? 'bg-background mt-0' : 'shadow-md bg-primary mt-3'}`}>
+        {/* Logo */}
+        <Link to="/" className="text-2xl font-bold mr-4">
+          ModernShop
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-10">
+          {navItems.map((item) => (
+            <Link
+              to={item.path}
+              key={item.name}
+              className={cn(
+                "text-secondary hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors flex items-center gap-2",
+                pathname === item.path && "text-emerald-600 dark:text-emerald-400"
               )}
-            </Button>
+            >
+              <item.icon className="size-6" />
+              {pathname === item.path && <span className="hidden md:block">{item.name}</span>}
+            </Link>
+          ))}
+        </nav>
 
-            {/* Mobile Menu Button */}
-            <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
+        {/* Search Bar */}
+        <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
+          <div className="relative w-full">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
+            <Input
+              placeholder="Search products..."
+              className="pl-10 border-border rounded-full bg-transparent"
+            />
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-slate-200 dark:border-slate-700">
-            <nav className="flex flex-col space-y-4">
-              <Link
-                to="/"
-                className="text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                to="/shop"
-                className="text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-              >
-                Shop
-              </Link>
-              <Link
-                to="/collections"
-                className="text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-              >
-                Collections
-              </Link>
-              <Link
-                to="/about"
-                className="text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-              >
-                About
-              </Link>
-              <div className="pt-4">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
-                  <Input
-                    placeholder="Search products..."
-                    className="pl-10 bg-slate-100 dark:bg-slate-800 border-none rounded-full"
-                  />
-                </div>
-              </div>
-            </nav>
-          </div>
-        )}
+        {/* Actions */}
+        <div className="flex items-center space-x-4">
+          <ThemeToggle />
+          <NavUser user={{ name: "John Doe", email: "john.doe@example.com", avatar: "/placeholder.svg" }} />
+          <CartDrawer />
+        </div>
+      </nav>
+
+      {/* Mobile Bottom Navigation */}
+      <div className={`md:hidden fixed bottom-0 left-0 right-0 z-50 px-2 transition-transform duration-300 bg-gradient-to-b from-transparent via-white/70 to-white dark:via-[#222222]/70 dark:to-[#222222] ${showMobileBars ? 'translate-y-0' : 'translate-y-full'}`}>
+        <nav className="bg-primary grid grid-cols-4 px-2 items-center h-14 rounded-3xl shadow-md mb-2">
+          {navItems.map((item) => (
+            <Link to={item.path} key={item.name} className={`flex items-center justify-center gap-1 transition-colors ${pathname === item.path ? 'bg-emerald-600 text-white rounded-2xl p-2 w-24' : 'text-secondary bg-transparent'}`}>
+              <item.icon className="size-6" />
+              {pathname === item.path && <span className="text-xs">{item.name}</span>}
+            </Link>
+          ))}
+        </nav>
       </div>
 
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </header>
   )
 }

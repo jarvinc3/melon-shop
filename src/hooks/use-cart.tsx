@@ -1,5 +1,5 @@
-import type { CartContextType } from "@/components/lib/cart-provider"
-import CartContext from "@/components/lib/cart-provider"
+import type { CartContextType } from "@/lib/cart-provider"
+import CartContext from "@/lib/cart-provider"
 import { useContext } from "react"
 
 export function useCart(): CartContextType {

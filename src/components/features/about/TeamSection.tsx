@@ -29,11 +29,11 @@ const team = [
 
 export function TeamSection() {
   return (
-    <section className="py-24 bg-slate-100 dark:bg-slate-800">
+    <section className="py-10 bg-primary">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">Meet Our Team</h2>
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-primary mb-4">Meet Our Team</h2>
+          <p className="text-xl text-secondary max-w-2xl mx-auto">
             The passionate individuals behind ModernShop who work tirelessly to bring you the best
           </p>
         </div>
@@ -53,9 +53,9 @@ export function TeamSection() {
                   />
                   <div className="absolute inset-0 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-2">{member.name}</h3>
+                <h3 className="text-xl font-semibold text-primary mb-2">{member.name}</h3>
                 <p className="text-emerald-600 dark:text-emerald-400 font-medium mb-4">{member.role}</p>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{member.bio}</p>
+                <p className="text-secondary text-sm leading-relaxed">{member.bio}</p>
               </CardContent>
             </Card>
           ))}

@@ -1,50 +1,66 @@
-# React + TypeScript + Vite
+# Melon Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Melon Shop is a modern online store built with React, TypeScript, and Vite. It offers a fast and attractive user experience to browse, search, and purchase products, featuring a shopping cart, checkout process, and admin dashboard.
 
-Currently, two official plugins are available:
+## Main Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Product catalog with filters and search
+- Interactive shopping cart
+- Simple checkout process
+- Admin dashboard for managing products and orders
+- Responsive and modern design
+- Reusable components and modular architecture
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/) for development and build
+- [ESLint](https://eslint.org/) for code quality
+- [Modern CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) (customizable to your stack)
 
-- Configure the top-level `parserOptions` property like this:
+## Installation & Local Development
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. Clone the repository:
+   ``bash
+   git clone https://github.com/your-username/melon-shop.git
+   cd melon-shop
+   ``
+2. Install dependencies:
+   ``bash
+   npm install
+   ``
+3. Start the development server:
+   ``bash
+   npm run dev
+   ``
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Project Structure
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- `src/components/` – Reusable and feature components
+- `src/pages/` – Main application pages
+- `src/routes/` – Route definitions
+- `public/` – Static assets and images
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Useful Scripts
+
+- `npm run dev` – Start development environment
+- `npm run build` – Build for production
+- `npm run preview` – Preview the production build
+- `npm run lint` – Run the linter
+
+## Screenshots
+
+You can add images to the `public/` folder and link them here to showcase the store design.
+
+## Contributing
+
+Contributions are welcome! Open an issue or pull request to suggest improvements or report bugs.
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+Developed with ❤️ by the Melon Shop team.

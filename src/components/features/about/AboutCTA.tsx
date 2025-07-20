@@ -4,11 +4,11 @@ import { Link } from "react-router-dom"
 
 export function AboutCTA() {
   return (
-    <section className="py-24">
+    <section className="py-10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-6">Ready to Start Your Journey?</h2>
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-primary mb-6">Ready to Start Your Journey?</h2>
+          <p className="text-xl text-secondary mb-8 max-w-2xl mx-auto">
             Join thousands of satisfied customers who have discovered the ModernShop difference. Experience premium
             quality and exceptional service today.
           </p>

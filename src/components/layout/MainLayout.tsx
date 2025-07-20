@@ -1,13 +1,12 @@
-import { Outlet } from 'react-router-dom';
 import { Footer } from './Footer';
 import { Header } from './Header';
 
-export default function MainLayout () {
+export default function MainLayout({ children }: { children: React.ReactNode }) {
    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-stone-100 dark:from-slate-900 dark:to-slate-800">
+      <div className="min-h-screen flex flex-col">
          <Header />
-         <main>
-            <Outlet />
+         <main className="flex-1 bg-background pt-16 md:pt-6">
+            {children}
          </main>
          <Footer />
       </div>

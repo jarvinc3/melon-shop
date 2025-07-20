@@ -1,63 +1,42 @@
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Separator } from "@/components/ui/separator"
 import { useCart } from "@/hooks/use-cart"
-import { Link } from "react-router-dom"
+import { cn } from "@/lib/utils"
+import { useNavigate } from "react-router-dom"
 
-export function CartSummary() {
+export function CartSummary( {className}: {className?: string} ) {
   const { items, total } = useCart()
-
+  const navigate = useNavigate()
   const subtotal = total
   const shipping = subtotal > 100 ? 0 : 10
   const tax = subtotal * 0.08
   const finalTotal = subtotal + shipping + tax
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Order Summary</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="space-y-2">
-          <div className="flex justify-between">
-            <span>Subtotal ({items.length} items)</span>
-            <span>${subtotal.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Shipping</span>
-            <span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Tax</span>
-            <span>${tax.toFixed(2)}</span>
-          </div>
+    <div className="space-y-5">
+      <div className={cn("items-center bg-primary md:bg-secondary rounded-xl p-2 gap-2 border border-border dark:border-none hidden md:flex", className)}>
+        <input
+          type="text"
+          placeholder="Promo Code"
+          className="flex-1 bg-transparent outline-none border-none text-base px-2"
+        />
+        <Button variant="outline" className="bg-inverse cursor-pointer text-inverse rounded-lg px-5 py-2 text-center font-semibold text-base border border-border dark:border-none">Apply</Button>
+      </div>
+      <div className="space-y-2 text-base">
+        <div className="flex justify-between">
+          <span className="font-medium text-secondary">Order Amount</span>
+          <span className="font-semibold text-primary">${subtotal.toFixed(2)}</span>
         </div>
-
-        <Separator />
-
-        <div className="flex justify-between font-semibold text-lg">
-          <span>Total</span>
-          <span>${finalTotal.toFixed(2)}</span>
+        <div className="flex justify-between">
+          <span className="font-medium text-secondary">Tax</span>
+          <span className="font-semibold text-primary">${tax.toFixed(2)}</span>
         </div>
-
-        <div className="space-y-2">
-          <Input placeholder="Enter discount code" />
-          <Button variant="outline" className="w-full bg-transparent">
-            Apply Discount
-          </Button>
+        <div className="flex justify-between border-t pt-2 mt-2">
+          <span className="font-bold text-lg">Total Payment <span className="text-xs font-normal text-secondary">({items.length} items)</span></span>
+          <span className="font-bold text-lg text-primary">${finalTotal.toFixed(2)}</span>
         </div>
-
-        <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700">
-          <Link to="/checkout">Proceed to Checkout</Link>
-        </Button>
-
-        {subtotal < 100 && (
-          <p className="text-sm text-slate-600 dark:text-slate-400 text-center">
-            Add ${(100 - subtotal).toFixed(2)} more for free shipping!
-          </p>
-        )}
-      </CardContent>
-    </Card>
+      </div>
+      <Button onClick={() => navigate("/checkout")} className="w-full cursor-pointer bg-inverse text-inverse rounded-2xl py-6 text-lg font-bold mt-2">Proceed To Checkout</Button>
+    </div>
   )
 }
+

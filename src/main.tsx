@@ -1,10 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
-import { CartProvider } from "./components/lib/cart-provider"
-import { ThemeProvider } from "./components/lib/theme-provider"
-import { Toaster } from "./components/ui/toaster"
+import { Toaster } from "./components/ui/sonner"
 import "./index.css"
+import { CartProvider } from "./lib/cart-provider"
+import { ThemeProvider } from "./lib/theme-provider"
 import { AppRouter } from "./routes/AppRouter"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

@@ -7,7 +7,7 @@ export function CollectionHero() {
             Our
             <span className="text-emerald-600 dark:text-emerald-400"> Collections</span>
           </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-secondary mb-8 max-w-2xl mx-auto">
             Discover our carefully curated collections, each designed to bring style, quality, and innovation to your
             life.
           </p>

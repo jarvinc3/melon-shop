@@ -30,11 +30,11 @@ const values = [
 
 export function AboutValues() {
   return (
-    <section className="py-24">
+    <section className="py-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">Our Values</h2>
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-primary mb-4">Our Values</h2>
+          <p className="text-xl text-secondary max-w-2xl mx-auto">
             The principles that guide everything we do and shape our commitment to excellence
           </p>
         </div>
@@ -47,12 +47,12 @@ export function AboutValues() {
             >
               <CardContent className="p-8 text-center">
                 <div
-                  className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 mb-6 group-hover:scale-110 transition-transform duration-300`}
+                  className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary mb-6 group-hover:scale-110 transition-transform duration-300`}
                 >
                   {value.icon && <value.icon className={`h-8 w-8 ${value.color}`} />}
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-4">{value.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{value.description}</p>
+                <h3 className="text-xl font-semibold text-primary mb-4">{value.title}</h3>
+                <p className="text-secondary leading-relaxed">{value.description}</p>
               </CardContent>
             </Card>
           ))}
